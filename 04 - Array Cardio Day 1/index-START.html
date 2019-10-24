@@ -79,7 +79,7 @@
 
     console.table(sortedPeople); */
 
-    const desc = people.sort(function(a, b){
+    const desc = people.sort((a, b) => {
       const [aLast, aFirst] = a.split(', ');
       const [bLast, bFirst] = b.split(', ');
       return aLast > bLast ? -1 : 1;
@@ -90,14 +90,27 @@
     // 8. Reduce Exercise
     // Sum up the instances of each of these
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck'];
-    const map = new Map();
+    /* const map = new Map();
 
     data.forEach(e => {
-      if (map.has(e)) map.set(e, 1 + map.get(e)++);
+      if (map.has(e)) map.set(e, map.get(e));
       else if (!(map.has(e))) map.set(e, 1);
-    })
+    }) */
 
-    console.log(map);
+    /* const map = new Map();
+
+    data.forEach(e => {
+      if (!map.has(e)) map.set(e, {val: 0});
+      map.get(e).val++;
+    }) */
+
+    const transportation = data.reduce((obj, item) => {
+      if (obj.hasOwnProperty(item)) obj[item]++;
+      else obj[item] = 1;
+      return obj;
+    }, {})
+
+    console.log(transportation);
 
   </script>
 </body>
